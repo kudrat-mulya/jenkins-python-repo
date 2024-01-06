@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Run script') {
             steps {
-                echo 'run script'
+                sh 'python3 python_script.py'
             }
         }
         // stage('Deploy') {
