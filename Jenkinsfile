@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Run script') {
             steps {
-                sh 'python3 python_script22.py'
+                sh 'python3 python_script2.py'
             }
         }
         // stage('Deploy') {
