@@ -1,27 +1,27 @@
 pipeline {
     agent {
         docker {
-            image 'node:16-buster-slim' 
+            image 'python:3.9-bullseye' 
             args '-p 3000:3000' 
         }
     }
     stages {
-        stage('Build') { 
+        stage('Cek versi python') { 
             steps {
-                sh 'npm install'
+                sh 'python3 --version'
             }
         }
-        stage('Test') {
+        stage('Run script') {
             steps {
-                sh './jenkins/scripts/test.sh'
+                echo 'run script'
             }
         }
-        stage('Deploy') {
-            steps {
-                sh './jenkins/scripts/deliver.sh'
-                input message: 'sudah selesai menggunakan react app? (klik "proceed" untuk mengakhiri)'
-                sh './jenkins/scripts/kill.sh'
-            }
-        }
+        // stage('Deploy') {
+            // steps {
+                // sh './jenkins/scripts/deliver.sh'
+                // input message: 'sudah selesai menggunakan react app? (klik "proceed" untuk mengakhiri)'
+                // sh './jenkins/scripts/kill.sh'
+            // }
+        // }
     }
-}
+} 
