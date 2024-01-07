@@ -16,6 +16,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
+                    echo "Fixing permissions..."
+                    sh 'chown -R jenkins:jenkins /var/lib/apt/lists'
                     echo "Installing Python..."
                     sh 'apt-get update && apt-get install -y python3 python3-pip'
                     echo "Upgrading pip..."
