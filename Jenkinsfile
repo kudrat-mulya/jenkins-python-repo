@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
 			def home = sh(script: 'echo $HOME', returnStdout: true).trim()
-                	sh "chmod -R 755 $home/.local"
+                        sh "chmod -R 755 $home/.local"
 		}
             }
         }
