@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     echo "Building..."
-                    sh 'sudo pip install pytz'
+                    sh ' pip3 install pytz'
                 }
             }
         }
