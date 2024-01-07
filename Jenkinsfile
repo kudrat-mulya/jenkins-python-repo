@@ -19,7 +19,8 @@ pipeline {
         }
         stage('Adjust Permissions') {
             steps {
-                sh 'chmod -R 755 $HOME/.local'
+                def home = sh(script: 'echo $HOME', returnStdout: true).trim()
+                sh "chmod -R 755 $home/.local"
             }
         }
         stage('Build') {
