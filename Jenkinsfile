@@ -12,7 +12,6 @@ pipeline {
                 echo "Current user: ${env.USER}"
                 sh 'python3 -m venv venv'
                 sh '. venv/bin/activate'
-                #sh 'pip install --upgrade --user pip'
                 sh 'chmod -R 755 /.local'
             }
         }
