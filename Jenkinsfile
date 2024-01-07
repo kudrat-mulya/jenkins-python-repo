@@ -12,17 +12,16 @@ pipeline {
                 echo "Current user: ${env.USER}"
                 sh 'python3 -m venv venv'
                 sh '. venv/bin/activate'
-                sh 'pip install --upgrade pip'
-                sh 'chown -R ${env.USER}:${env.USER} ~/.cache/pip'
                 sh 'pip install --upgrade --user pip'
+                sh 'chmod -R 755 /.local'
             }
         }
 
         stage('Install Dependencies') {
             steps {
                 echo "Current user: ${env.USER}"
-                sh 'chown -R ${env.USER}:${env.USER} venv'
-                sh 'pip install --user -r requirements.txt'
+                sh 'ls -ld /.cache'
+                sh 'pip install --upgrade --user -r requirements.txt'
             }
         }
 
@@ -41,4 +40,3 @@ pipeline {
         }
     }
 }
-
