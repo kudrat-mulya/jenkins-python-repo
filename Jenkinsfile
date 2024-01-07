@@ -17,13 +17,13 @@ pipeline {
             steps {
                 script {
                     echo "Fixing permissions..."
-                    sh 'apt-get update && apt-get install -y sudo'
-                    sh 'chmod -R 777 /var/lib/apt/lists'
+                    sh 'sudo apt-get update && sudo apt-get install -y sudo'
+                    sh 'sudo chmod -R 777 /var/lib/apt/lists'
                     sh 'sudo apt-get update && sudo apt-get install -y python3 python3-pip'
                     echo "Upgrading pip..."
-                    sh 'pip install --upgrade pip'
+                    sh 'sudo pip install --upgrade pip'
                     echo "Building..."
-                    sh 'pip install -r requirements.txt --user'
+                    sh 'sudo pip install -r requirements.txt --user'
                 }
             }
         }
