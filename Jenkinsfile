@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     echo "Building..."
-                    sh 'pip install requests numpy pandas'
+                    sh 'pip install --user pytz'
                 }
             }
         }
