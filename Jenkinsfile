@@ -19,10 +19,10 @@ pipeline {
         }
         stage('Run Tests') {
             steps {
-                dir('jenkins-python') {
+                dir('jenkins/scripts') {
                     script {
                         echo "Running Node.js tests..."
-                        sh './jenkins/scripts/test.sh'
+                        sh 'bash test.sh'
                     }
                 }
                 script {
