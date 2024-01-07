@@ -12,15 +12,11 @@ pipeline {
                 sh 'npm install'
             }
         }
-        stage('Test') {
+        stage('Run Tests') {
             steps {
                 sh './jenkins/scripts/test.sh'
-            }
-        }
-        stage('Test') {
-            steps {
                 script {
-                    echo "Running tests..."
+                    echo "Running Python tests..."
                     sh 'python3 -m unittest discover'
                 }
             }
