@@ -9,7 +9,7 @@ pipeline {
         stage('Prepare Environment') {
             steps {
                 sh 'python3 -m venv venv'
-                sh 'source venv/bin/activate'
+                sh '. venv/bin/activate'
             }
         }
         stage('Upgrade Pip') {
