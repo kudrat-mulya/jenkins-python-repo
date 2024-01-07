@@ -7,34 +7,39 @@ pipeline {
     }
     
     stages {
-        stage('Prepare Environment') {
+        stage('Build') {
             steps {
-                echo "Current user: ${env.USER}"
-                sh 'python3 -m venv venv'
-                sh '. venv/bin/activate'
-                sh 'chmod -R 755 /.local'
+                script {
+                    echo "Building..."
+                    sh 'pip install -r requirements.txt'
+                }
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Test') {
             steps {
-                echo "Current user: ${env.USER}"
-                sh 'ls -ld /.cache'
-                sh 'pip install --upgrade --user -r requirements.txt'
+                script {
+                    echo "Running tests..."
+                    sh 'python3 -m unittest discover'
+                }
             }
         }
 
-        stage('Run Tests') {
+        stage('Check Python Version') {
             steps {
-                echo "Current user: ${env.USER}"
-                sh 'python3 -m unittest discover'
+                script {
+                    echo "Checking Python version..."
+                    sh 'python3 --version'
+                }
             }
         }
 
         stage('Run Script') {
             steps {
-                echo "Current user: ${env.USER}"
-                sh 'python3 python_script2.py'
+                script {
+                    echo "Running python_script2.py..."
+                    sh 'python3 python_script2.py'
+                }
             }
         }
     }
