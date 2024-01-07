@@ -10,8 +10,10 @@ pipeline {
         stage('Build') {
             steps {
                 script {
+                    echo "Upgrading pip..."
+                    sh 'pip install --upgrade pip'
                     echo "Building..."
-                    sh ' pip3 install pytz'
+                    sh 'pip install -r requirements.txt'
                 }
             }
         }
