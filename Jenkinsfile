@@ -9,12 +9,22 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh 'npm install'
+                dir('jenkins-python') {
+                    script {
+                        echo "Installing Node.js dependencies..."
+                        sh 'npm install'
+                    }
+                }
             }
         }
         stage('Run Tests') {
             steps {
-                sh './jenkins/scripts/test.sh'
+                dir('jenkins-python') {
+                    script {
+                        echo "Running Node.js tests..."
+                        sh './jenkins/scripts/test.sh'
+                    }
+                }
                 script {
                     echo "Running Python tests..."
                     sh 'python3 -m unittest discover'
