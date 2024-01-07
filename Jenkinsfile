@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     echo "Building..."
-                    sh 'pip install -r requirements.txt'
+                    sh 'pip install requests numpy pandas'
                 }
             }
         }
