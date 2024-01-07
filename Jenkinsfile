@@ -6,6 +6,22 @@ pipeline {
         }
     }
     stages {
+        stage('Prepare Environment') {
+            steps {
+                sh 'python3 -m venv venv'
+                sh 'source venv/bin/activate'
+            }
+        }
+        stage('Upgrade Pip') {
+            steps {
+                sh 'pip install --upgrade pip'
+            }
+        }
+        stage('Adjust Permissions') {
+            steps {
+                sh 'chmod -R 755 ~/.local'
+            }
+        }
         stage('Build') {
             steps {
                 sh 'pip install -r requirements.txt'
@@ -15,8 +31,8 @@ pipeline {
             steps {
                 sh 'python3 -m unittest discover'
             }
-	}
-        stage('Cek versi python') { 
+        }
+        stage('Cek versi python') {
             steps {
                 sh 'python3 --version'
             }
@@ -27,4 +43,4 @@ pipeline {
             }
         }
     }
-} 
+}
