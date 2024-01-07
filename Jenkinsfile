@@ -9,6 +9,7 @@ pipeline {
     stages {
         stage('Prepare Environment') {
             steps {
+                echo "Current user: $USER"
                 sh 'python3 -m venv venv'
                 sh '. venv/bin/activate'
                 sh 'pip install --upgrade pip'
@@ -24,12 +25,14 @@ pipeline {
 
         stage('Run Tests') {
             steps {
+                echo "Current user: $USER"
                 sh 'python3 -m unittest discover'
             }
         }
 
         stage('Run Script') {
             steps {
+                echo "Current user: $USER"
                 sh 'python3 python_script2.py'
             }
         }
