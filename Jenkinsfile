@@ -12,14 +12,19 @@ pipeline {
                 echo "Current user: ${env.USER}"
                 sh 'python3 -m venv venv'
                 sh '. venv/bin/activate'
-                sh 'pip install --upgrade pip'
+            }
+        }
+
+        stage('Upgrade Pip') {
+            steps {
+                echo "Current user: ${env.USER}"
+                sh 'pip install --upgrade --user pip'
             }
         }
 
         stage('Install Dependencies') {
             steps {
                 echo "Current user: ${env.USER}"
-                sh 'chown -R ${env.USER}:${env.USER} venv'
                 sh 'pip install --user -r requirements.txt'
             }
         }
