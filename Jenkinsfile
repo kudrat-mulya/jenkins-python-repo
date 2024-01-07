@@ -17,7 +17,8 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'pip install -r requirements.txt'
+                echo "Current user: $USER"
+                sh 'pip install --user -r requirements.txt'
             }
         }
 
