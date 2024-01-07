@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Upgrade Pip') {
             steps {
-                sh 'pip install --upgrade pip'
+                sh 'source venv/bin/activate && pip install --upgrade pip'
             }
         }
         stage('Adjust Permissions') {
@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'pip install -r requirements.txt'
+                sh 'pip install -r requirements.txt --target=venv/lib/python3.9/site-packages'
             }
         }
         stage('Test') {
