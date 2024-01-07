@@ -1,11 +1,10 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:16-buster-slim'
-            args '-p 3000:3000'
-        }
-    }
+    agent any
     
+    environment {
+        PATH = "/usr/local/bin:$PATH"
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -19,9 +18,9 @@ pipeline {
                     echo "Installing required packages..."
                     sh 'apt-get update && apt-get install -y python3 python3-pip'
                     echo "Upgrading pip..."
-                    sh 'sudo pip install --upgrade pip'
+                    sh 'pip3 install --upgrade pip'
                     echo "Building..."
-                    sh 'sudo pip install -r requirements.txt'
+                    sh 'pip3 install -r requirements.txt --user'
                 }
             }
         }
