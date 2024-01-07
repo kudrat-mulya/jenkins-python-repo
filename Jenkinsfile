@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Upgrade Pip') {
             steps {
-                sh 'source venv/bin/activate && pip install --upgrade pip'
+                sh '. venv/bin/activate && pip install --upgrade pip'
             }
         }
         stage('Adjust Permissions') {
