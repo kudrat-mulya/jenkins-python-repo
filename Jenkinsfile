@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Adjust Permissions') {
             steps {
-                sh 'chmod -R 755 ~/.local'
+                sh 'chmod -R 755 $HOME/.local'
             }
         }
         stage('Build') {
