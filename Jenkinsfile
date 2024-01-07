@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'python:3.9-bullseye'
+            image 'node:16-buster-slim'
             args '-p 3000:3000'
         }
     }
@@ -17,9 +17,9 @@ pipeline {
             steps {
                 script {
                     echo "Upgrading pip..."
-                    sh 'sudo -H pip install --upgrade pip'
+                    sh 'pip install --upgrade pip'
                     echo "Building..."
-                    sh 'sudo -H pip install -r requirements.txt --user'
+                    sh 'pip install -r requirements.txt --user'
                 }
             }
         }
