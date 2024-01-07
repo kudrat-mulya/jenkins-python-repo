@@ -7,14 +7,19 @@ pipeline {
     }
     
     stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
         stage('Build') {
             steps {
                 script {
                     echo "Upgrading pip..."
-                    sh 'pip install --upgrade pip'
+                    sh 'sudo -H pip install --upgrade pip'
                     echo "Building..."
-                    sh 'pip install -r requirements.txt --user'
-                    sh 'chown -R $USER:$USER $HOME/.local'
+                    sh 'sudo -H pip install -r requirements.txt --user'
                 }
             }
         }
