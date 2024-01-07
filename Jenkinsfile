@@ -17,9 +17,9 @@ pipeline {
             steps {
                 script {
                     echo "Fixing permissions..."
-                    sh 'chown -R jenkins:jenkins /var/lib/apt/lists'
-                    echo "Installing Python..."
-                    sh 'apt-get update && apt-get install -y python3 python3-pip'
+                    sh 'apt-get update && apt-get install -y sudo'
+                    sh 'chmod -R 777 /var/lib/apt/lists'
+                    sh 'sudo apt-get update && sudo apt-get install -y python3 python3-pip'
                     echo "Upgrading pip..."
                     sh 'pip install --upgrade pip'
                     echo "Building..."
