@@ -7,25 +7,16 @@ pipeline {
     }
     
     stages {
-        stage('Checkout') {
+        stage('Build') { 
             steps {
-                checkout scm
+                sh 'npm install'
             }
         }
-
-        stage('Build') {
+        stage('Test') {
             steps {
-                script {
-                    echo "Installing required packages..."
-                    sh 'apt-get update && apt-get install -y python3 python3-pip'
-                    echo "Upgrading pip..."
-                    sh 'sudo -H pip3 install --upgrade pip'
-                    echo "Building..."
-                    sh 'pip3 install -r requirements.txt --user'
-                }
+                sh './jenkins/scripts/test.sh'
             }
         }
-
         stage('Test') {
             steps {
                 script {
