@@ -19,6 +19,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 echo "Current user: ${env.USER}"
+                sh 'chown -R ${env.USER}:${env.USER} venv'
                 sh 'pip install --user -r requirements.txt'
             }
         }
