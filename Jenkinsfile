@@ -16,6 +16,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
+                    echo "Installing Python..."
+                    sh 'apt-get update && apt-get install -y python3 python3-pip'
                     echo "Upgrading pip..."
                     sh 'pip install --upgrade pip'
                     echo "Building..."
