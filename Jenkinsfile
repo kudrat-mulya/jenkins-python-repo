@@ -13,7 +13,8 @@ pipeline {
                     echo "Upgrading pip..."
                     sh 'pip install --upgrade pip'
                     echo "Building..."
-                    sh 'pip install -r requirements.txt'
+                    sh 'pip install -r requirements.txt --user'
+                    sh 'chown -R $USER:$USER $HOME/.local'
                 }
             }
         }
